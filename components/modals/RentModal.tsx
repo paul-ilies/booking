@@ -263,7 +263,7 @@ const RentModal = () => {
       onClose={rentModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       isOpen={rentModal.isOpen}
-      title="Airbnb your home!"
+      title="BooKingsTravel"
       body={bodyContent}
     />
   );

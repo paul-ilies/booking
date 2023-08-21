@@ -9,7 +9,7 @@ const Avatar = ({ src }: { src?: string | null | undefined }) => {
       height="30"
       width="30"
       alt="avatar"
-      src={src || "/images/placeholder.jpg"}
+      src={src || "/placeholder.png"}
     />
   );
 };
