@@ -2,11 +2,13 @@
 import React, { useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { format } from "date-fns";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import HeartButton from "../HeartButton";
 import Button from "../Button";
 import useCountries from "@/hooks/useCountries";
 import { SafeListing, SafeReservation, SafeUser } from "@/types";
+import { toBase64 } from "@/utils/convertShimmer";
+import { shimmer } from "@/utils/Shimmer";
 
 interface ListingCardProps {
   data: SafeListing;
@@ -65,7 +67,11 @@ const ListingCard: React.FC<ListingCardProps> = ({
           <Image
             alt="listing"
             src={data.imageSrc}
-            fill
+            layout="fill"
+            placeholder="blur"
+            blurDataURL={`data:image/svg+xml;base64,${toBase64(
+              shimmer(700, 475)
+            )}`}
             className="object-cover h-full w-full group-hover:scale-110 transition "
           />
           <div className="absolute top-3 right-3">

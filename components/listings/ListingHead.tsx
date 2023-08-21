@@ -1,10 +1,12 @@
 "use client";
 import React from "react";
 import Heading from "../Heading";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import HeartButton from "../HeartButton";
 import useCountries from "@/hooks/useCountries";
 import { SafeUser } from "@/types";
+import { shimmer } from "@/utils/Shimmer";
+import { toBase64 } from "@/utils/convertShimmer";
 interface ListingHeadProps {
   title: string;
   imageSrc: string;
@@ -32,7 +34,11 @@ const ListingHead: React.FC<ListingHeadProps> = ({
         <Image
           src={imageSrc}
           alt="Image"
-          fill
+          layout="fill"
+          placeholder="blur"
+          blurDataURL={`data:image/svg+xml;base64,${toBase64(
+            shimmer(700, 475)
+          )}`}
           className="object-cover w-full"
         />
         <div className="absolute top-5 right-5">
