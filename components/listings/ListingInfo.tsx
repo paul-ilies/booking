@@ -24,6 +24,8 @@ interface ListingInfoProps {
   guestCount: number;
   bathRoomCount: number;
   locationValue: string;
+  listingCreatedByUser?: string | null;
+  id: string;
 }
 
 const ListingInfo: React.FC<ListingInfoProps> = ({
@@ -34,9 +36,12 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
   guestCount,
   bathRoomCount,
   locationValue,
+  listingCreatedByUser,
+  id,
 }) => {
   const { getByValue } = useCountries();
   const coords = getByValue(locationValue)?.latlng;
+  const renderHostText = listingCreatedByUser !== id ? user?.name : "You";
 
   return (
     <div className="col-span-4 flex flex-col gap-8">
@@ -50,7 +55,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         gap-2
         "
         >
-          <div>Hosted by {user?.name}</div>
+          <div>Hosted by {renderHostText}</div>
           <Avatar src={user?.image} />
         </div>
         <div className="flex items-center gap-4 font-light text-neutral-500">

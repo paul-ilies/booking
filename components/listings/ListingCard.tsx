@@ -9,6 +9,7 @@ import useCountries from "@/hooks/useCountries";
 import { SafeListing, SafeReservation, SafeUser } from "@/types";
 import { toBase64 } from "@/utils/convertShimmer";
 import { shimmer } from "@/utils/Shimmer";
+import { getUserListingById } from "@/actions/getUserListingById";
 
 interface ListingCardProps {
   data: SafeListing;

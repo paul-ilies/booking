@@ -13,6 +13,7 @@ interface ListingHeadProps {
   locationValue: string;
   id: string;
   currentUser?: SafeUser | null;
+  listingCreatedByUser?: string | null;
 }
 
 const ListingHead: React.FC<ListingHeadProps> = ({
@@ -21,6 +22,7 @@ const ListingHead: React.FC<ListingHeadProps> = ({
   locationValue,
   id,
   currentUser,
+  listingCreatedByUser,
 }) => {
   const { getByValue } = useCountries();
   const location = getByValue(locationValue);
@@ -41,9 +43,11 @@ const ListingHead: React.FC<ListingHeadProps> = ({
           )}`}
           className="object-cover w-full"
         />
-        <div className="absolute top-5 right-5">
-          <HeartButton listingId={id} currentUser={currentUser} />
-        </div>
+        {id !== listingCreatedByUser && (
+          <div className="absolute top-5 right-5">
+            <HeartButton listingId={id} currentUser={currentUser} />
+          </div>
+        )}
       </div>
     </>
   );

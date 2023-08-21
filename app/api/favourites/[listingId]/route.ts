@@ -16,6 +16,20 @@ export async function POST(req: Request, { params }: { params: IParams }) {
   let favoriteIds = [...(currentUser.favoriteIds || [])];
   favoriteIds.push(listingId);
 
+  const listingCreatedByCurrentUser = await client.listing.findFirst({
+    where: {
+      id: listingId,
+      userId: currentUser.id,
+    },
+  });
+  if (listingCreatedByCurrentUser)
+    return NextResponse.json(
+      {
+        error: "You can't add your own listing to favorites",
+      },
+      { status: 400 }
+    );
+
   const user = await client.user.update({
     where: {
       id: currentUser.id,

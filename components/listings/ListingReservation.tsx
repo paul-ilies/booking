@@ -12,6 +12,8 @@ interface ListingReservationProps {
   onSubmit: () => void;
   disabled?: boolean;
   disabledDates?: Date[];
+  listingCreatedByUser?: string | null;
+  id: string;
 }
 
 const ListingReservation: React.FC<ListingReservationProps> = ({
@@ -22,13 +24,18 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
   onSubmit,
   disabled,
   disabledDates,
+  listingCreatedByUser,
+  id,
 }) => {
   return (
     <div className="bg-white rounded-xl border border-neutral-200 overflow-hidden">
-      <div className="flex items-center gap-1 p-4 ">
-        <div className="text-2xl font-semibold">$ {price}</div>
-        <div className="font-light text-neutral-600">night</div>
-      </div>
+      {listingCreatedByUser !== id && (
+        <div className="flex items-center gap-1 p-4 ">
+          <div className="text-2xl font-semibold">$ {price}</div>
+          <div className="font-light text-neutral-600">night</div>
+        </div>
+      )}
+
       <hr />
 
       <Calendar
@@ -40,12 +47,18 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
       />
       <hr />
       <div className="p-4">
-        <Button onClick={onSubmit} disabled={disabled} label="Reserve" />
+        <Button
+          onClick={onSubmit}
+          disabled={listingCreatedByUser === id || disabled}
+          label="Reserve"
+        />
       </div>
-      <div className="p-4 flex items-center justify-between font-semibold text-lg">
-        <div>Total</div>
-        <div>$ {totalPrice}</div>
-      </div>
+      {listingCreatedByUser !== id && (
+        <div className="p-4 flex items-center justify-between font-semibold text-lg">
+          <div>Total</div>
+          <div>$ {totalPrice}</div>
+        </div>
+      )}
     </div>
   );
 };

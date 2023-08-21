@@ -38,8 +38,9 @@ export default function useFavourite({
         await request();
         router.refresh();
         toast.success("Success");
-      } catch (error) {
-        toast.error("Error");
+      } catch (error: any) {
+        console.log();
+        toast.error(error.response.data.error || "Error");
       }
     },
     [currentUser, hasFavorited, listingId, loginModal, router]

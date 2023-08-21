@@ -1,5 +1,6 @@
 import getCurrentUser from "@/actions/getCurrentUser";
 import { IListingsParams, getListings } from "@/actions/getListings";
+import { getUserListingById } from "@/actions/getUserListingById";
 import ClientOnly from "@/components/ClientOnly";
 import Container from "@/components/Container";
 import EmptyState from "@/components/EmptyState";
@@ -12,6 +13,7 @@ interface HomeProps {
 const Home = async ({ searchParams }: HomeProps) => {
   const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
+
   if (!listings.length) {
     return (
       <ClientOnly>
@@ -19,6 +21,7 @@ const Home = async ({ searchParams }: HomeProps) => {
       </ClientOnly>
     );
   }
+
   return (
     <ClientOnly>
       <Container>
