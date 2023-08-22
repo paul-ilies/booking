@@ -70,6 +70,7 @@ const LoginModal = () => {
       <Input
         id="password"
         label="Password"
+        type="password"
         disabled={isLoading}
         errors={errors}
         required

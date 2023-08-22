@@ -47,11 +47,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
       />
       <hr />
       <div className="p-4">
-        <Button
-          onClick={onSubmit}
-          disabled={listingCreatedByUser === id || disabled}
-          label="Reserve"
-        />
+        <Button onClick={onSubmit} label="Reserve" />
       </div>
       {listingCreatedByUser !== id && (
         <div className="p-4 flex items-center justify-between font-semibold text-lg">
