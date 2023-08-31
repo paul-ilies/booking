@@ -1,9 +1,7 @@
 "use client";
 import React, { useCallback } from "react";
 import { signIn } from "next-auth/react";
-import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-
 import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Modal from "./Modal";
@@ -11,7 +9,6 @@ import Heading from "../Heading";
 import Input from "../inputs/Input";
 import toast from "react-hot-toast";
 import Button from "../Button";
-
 import { useRouter } from "next/navigation";
 import useRegisterModal from "@/hooks/useRegisterModel";
 import useLoginModal from "@/hooks/useLoginModal";
@@ -87,12 +84,6 @@ const LoginModal = () => {
         label="Continue with Google"
         icon={FcGoogle}
         onClick={() => signIn("google")}
-      />
-      <Button
-        outline
-        label="Continue with Github"
-        icon={AiFillGithub}
-        onClick={() => signIn("github")}
       />
       <div className="text-neutral-500  text-center mt-4 font-light">
         <div className="flex justify-center items-center gap-2">

@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import axios from "axios";
-import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 
 import { useCallback, useState } from "react";
@@ -92,12 +91,6 @@ const RegisterModal = () => {
         label="Continue with Google"
         icon={FcGoogle}
         onClick={() => signIn("google")}
-      />
-      <Button
-        outline
-        label="Continue with Github"
-        icon={AiFillGithub}
-        onClick={() => signIn("github")}
       />
       <div className="text-neutral-500  text-center mt-4 font-light">
         <div className="flex justify-center items-center gap-2">
